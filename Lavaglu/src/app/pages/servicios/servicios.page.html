@@ -1,0 +1,173 @@
+
+<ion-content>
+
+  <!--Contenido dentro del Menú-->
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item *ngFor="let c of componentes" [routerLink] = "c.redirectTo" detail>
+          <ion-icon [name] = "c.icon" slot="start"></ion-icon>
+          <ion-label>{{c.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <!--Contenido fuera del Menú-->
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <app-header titulo="Servicios"></app-header>
+      </ion-toolbar>
+    </ion-header>
+  </div>
+
+  <div class="contenido">
+    <ion-grid>
+      <ion-row>
+
+        <ion-col>
+          <ion-card>
+            <img src="https://www.cleanipedia.com/images/iohqr4whhl17/6PGVcLpmQCCsE7rQXXKwSQ/3b41c2c1bbebb23ee25c6ac64324464b/SG94YnlfQ2xlYW5pcGVkaWFfXzQ3OV8uanBn/990w-660h/maneras-de-lavar-ropa-de-color-y-dejarla-perfecta.jpg" />
+            <ion-card-header>
+              <ion-card-title>Lavado</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+        <ion-col>
+          <ion-card>
+            <img src="https://www.65ymas.com/uploads/s1/89/19/3/bigstock-electric-iron-and-pile-of-clot-181401475.jpeg" />
+            <ion-card-header>
+              <ion-card-title>Planchado</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col>
+          <ion-card>
+            <img src="https://www.hogarmania.com/archivos/202110/como-secar-la-ropa-dentro-de-casa-consejos-hogar-XxXx80.jpg" />
+            <ion-card-header>
+              <ion-card-title>Secado</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-button id="open-modal" expand="block">Solicitar Servicios</ion-button>
+      <p>{{ message }}</p>
+      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()">Cancel</ion-button>
+              </ion-buttons>
+              <ion-title>Solicitar Servicios</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-list class="contenido">
+              <h1>Ubicación:</h1>
+              <ion-item>
+                <ion-label>Domicilio:</ion-label>
+                <ion-input placeholder="Enter text"></ion-input>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Colonia:</ion-label>
+                <ion-input placeholder="Enter text"></ion-input>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label>CP:</ion-label>
+                <ion-input type="number" placeholder="00000"></ion-input>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Día & Hora:</ion-label>
+                <ion-datetime-button datetime="datetime"></ion-datetime-button>
+                <ion-modal [keepContentsMounted]="true">
+                  <ng-template>
+                    <ion-datetime id="datetime"></ion-datetime>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Servicios:</ion-label>
+                <ion-select placeholder="Select Service">
+                  <ion-select-option value="lavado">Lavado</ion-select-option>
+                  <ion-select-option value="secado">Secado</ion-select-option>
+                  <ion-select-option value="planchado">Planchado</ion-select-option>
+                </ion-select>
+              </ion-item>
+          
+              <h1>¿Qué recoge?</h1>
+              <ion-item>
+                <ion-grid [fixed]="true">
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                        <ion-label>Blusas</ion-label>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                        <ion-label>Pantalones</ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+          
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                        <ion-label>Sacos</ion-label>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                        <ion-label>Colchas/Cobijas</ion-label>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+          
+                  <ion-row>
+                    <ion-col>
+                      <ion-item>
+                        <ion-checkbox slot="start"></ion-checkbox>
+                        <ion-label>Otros:</ion-label>
+                        <ion-input placeholder="Enter text"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+    </ion-grid>
+  </div>
+</ion-content>

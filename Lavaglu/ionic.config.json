@@ -1,0 +1,7 @@
+{
+  "name": "Lavaglu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
