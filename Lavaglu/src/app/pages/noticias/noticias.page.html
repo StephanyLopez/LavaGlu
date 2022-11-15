@@ -1,9 +1,39 @@
-<ion-header>
+<ion-header [translucent]="true" class="ion-no-border">
   <ion-toolbar>
     <ion-title>noticias</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Las Noticias Del Día</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let article of articles; let i = index" size="12" size-lg="3">
+
+        <ion-card>
+          <ion-card-subtitle class="ion-margin">
+            <span class="text-primary">{{ i+1 }}.</span>
+            <span class="article-source-name">{{ article.source.name }}</span>
+          </ion-card-subtitle>
+        
+          <ion-card-title class="ion-padding-horizontal ion-margin-botton">
+           {{article.title}}
+          </ion-card-title>
+
+          <ion-img *ngIf="article.urlToImage" [src]="article.urlToImage"></ion-img>
+
+          <ion-card-content *ngIf="article.description">
+            <p>{{article.description}}</p>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

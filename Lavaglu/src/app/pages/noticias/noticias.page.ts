@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NewsService } from 'src/app/services/news.service';
+import {Article} from '../../interfaces';
 
 const apiKey =environment.apiKey
 
@@ -11,12 +12,13 @@ const apiKey =environment.apiKey
 })
 export class NoticiasPage implements OnInit {
 
+  public articles: Article [] = []
+
   constructor(private newService: NewsService) { }
 
   ngOnInit() {
-    this.newService.getTopHeadLines().subscribe(resp =>{
-      console.log(resp);
-    });
+    this.newService.getTopHeadLines()
+      .subscribe(articles => this.articles.push( ...articles));
   }
 
 }
